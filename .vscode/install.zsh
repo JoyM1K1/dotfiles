@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 DOTVSCODEDIR=${0:a:h}
 VSCODE_SETTING_DIR=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
