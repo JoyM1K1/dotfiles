@@ -1,0 +1,18 @@
+# all ignore
+/*
+/.**
+
+### white list ###
+
+# .zsh
+!/.zsh
+!/.zsh/install.zsh
+!/.zsh/reinstall.zsh
+!/.zsh/rc/
+!/.zsh/rc/*
+!/.zsh/.zprezto_override
+!/.zsh/.zprezto_override/*
+
+# others
+!/.gitignore
+!/README.md
