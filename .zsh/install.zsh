@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+setopt EXTENDED_GLOB
+
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
     dot_rcfile="${ZDOTDIR:-$HOME}/.${rcfile:t}"
     rcfile_override="${ZDOTDIR:-$HOME}/.zprezto_override/${rcfile:t}"
