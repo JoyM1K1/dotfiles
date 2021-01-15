@@ -4,6 +4,13 @@
 
 ### white list ###
 
+# .vscode
+!/.vscode
+!/.vscode/install.zsh
+!/.vscode/extensions
+!/.vscode/keybindings.json
+!/.vscode/settings.json
+
 # .zsh
 !/.zsh
 !/.zsh/install.zsh

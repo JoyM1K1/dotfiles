@@ -8,6 +8,7 @@
 path=(
 	/usr/local/{bin,sbin}(N-/)
 	/opt/homebrew/bin(N-/)
+	/Applications/Visual\ Studio\ Code\ -\ Insiders.app/Contents/Resources/app/bin(N-/)
 	$path
 )
 
