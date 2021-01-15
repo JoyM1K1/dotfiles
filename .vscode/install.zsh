@@ -11,3 +11,10 @@ for file in $files; do
     fi
     ln -s "$DOTVSCODEDIR/$file" "$VSCODE_SETTING_DIR/$file"
 done
+
+# extensions
+cat extensions | while read line
+do
+    code --install-extension $line
+done
+code --list-extensions > extensions
