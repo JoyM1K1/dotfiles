@@ -5,6 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+zstyle :prompt:pure:path color cyan
+zstyle :prompt:pure:git:stash show yes
+zstyle :prompt:pure:git:branch color green
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -12,4 +16,8 @@ fi
 
 # Customize to your needs...
 
+# show dotfiles
+setopt GLOBDOTS
+
 eval "$(direnv hook zsh)"
+eval "$(anyenv init -)"
