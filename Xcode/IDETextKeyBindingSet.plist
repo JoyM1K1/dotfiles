@@ -297,6 +297,10 @@
     </dict>
     <key>User</key>
     <dict>
+        <key>Copy Current Line</key>
+        <string>selectLine:, copy:</string>
+        <key>Cut Current Line</key>
+        <string>selectLine:, cut:</string>
         <key>Duplicate Current Lines Down</key>
         <string>selectParagraph:, delete:, yank:, moveToBeginningOfParagraph:, yankAndSelect:</string>
         <key>Duplicate Current Lines Up</key>

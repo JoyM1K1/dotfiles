@@ -25,6 +25,8 @@
 # Xcode
 !/Xcode
 !/Xcode/*
+!/Xcode/KeyBindings
+!/Xcode/KeyBindings/*
 
 # others
 !/.gitignore
