@@ -30,5 +30,6 @@
 !/.gitignore
 !/README.md
 !Brewfile
+!/.gitconfig
 
 .DS_Store
