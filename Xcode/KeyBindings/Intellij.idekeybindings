@@ -218,7 +218,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -242,7 +242,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -266,7 +266,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -290,7 +290,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -314,7 +314,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -338,7 +338,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -362,7 +362,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -386,7 +386,7 @@
 				<key>GroupedAlternate</key>
 				<string>NO</string>
 				<key>Keyboard Shortcut</key>
-				<string>$@</string>
+				<string>~$</string>
 				<key>Navigation</key>
 				<string>NO</string>
 				<key>Parent Title</key>
@@ -426,10 +426,6 @@
 				<string>deleteSubWordBackward:</string>
 				<string>deleteToBeginningOfText:</string>
 			</array>
-			<key>$</key>
-			<string>moveToBeginningOfDocumentAndModifySelection:</string>
-			<key>$</key>
-			<string>moveToEndOfDocumentAndModifySelection:</string>
 			<key>@d</key>
 			<array>
 				<string>selectParagraph:</string>
@@ -452,6 +448,10 @@
 			</array>
 			<key>^</key>
 			<string>deleteForward:</string>
+			<key>~{</key>
+			<string>moveParagraphBackwardAndModifySelection:</string>
+			<key>~}</key>
+			<string>moveParagraphForwardAndModifySelection:</string>
 		</dict>
 		<key>Version</key>
 		<integer>3</integer>
