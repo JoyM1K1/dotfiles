@@ -27,11 +27,11 @@ ZRCDIR="$ZDOTDIR/rc"
 #========================================#
 #     CLI init                           #
 #========================================#
-if (( $+command[direnv] )); then
+if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
-if (( $+command[anyenv] )); then
+if (( $+commands[anyenv] )); then
   eval "$(anyenv init -)"
 fi
 
