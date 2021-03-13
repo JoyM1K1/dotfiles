@@ -6,7 +6,7 @@
 # .vscode
 !/.vscode
 !/.vscode/install.zsh
-!/.vscode/updateExtensions.zsh
+!/.vscode/dump.zsh
 !/.vscode/extensions
 !/.vscode/keybindings.json
 !/.vscode/settings.json
