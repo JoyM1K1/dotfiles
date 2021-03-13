@@ -25,6 +25,8 @@
 # Brewfile
 !/Brewfile
 !/Brewfile/Brewfile
+!/Brewfile/install.zsh
+!/Brewfile/dump.zsh
 
 # Xcode
 !/Xcode
