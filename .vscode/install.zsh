@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 DOTVSCODEDIR=${0:a:h}
-VSCODE_SETTING_DIR=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
+VSCODE_SETTING_DIR=$HOME/Library/Application\ Support/Code/User
 
 files=("settings.json" "keybindings.json")
 for file in $files; do
