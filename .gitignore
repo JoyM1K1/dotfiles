@@ -22,6 +22,10 @@
 !/.zsh/prompt/
 !/.zsh/prompt/*
 
+# Brewfile
+!/Brewfile
+!/Brewfile/Brewfile
+
 # Xcode
 !/Xcode
 !/Xcode/*
@@ -31,7 +35,6 @@
 # others
 !/.gitignore
 !/README.md
-!Brewfile
 !/.gitconfig
 
 .DS_Store
