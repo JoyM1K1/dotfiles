@@ -7,15 +7,6 @@
 
 export GOPATH=$HOME/go
 
-path=(
-	/opt/homebrew/bin(N-/)
-	/usr/local/{bin,sbin}(N-/)
-	$HOME/.anyenv/bin(N-/)
-	$GOPATH/bin(N-/)
-	$HOME/dotfiles/bin(N-/)
-	$path
-)
-
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
