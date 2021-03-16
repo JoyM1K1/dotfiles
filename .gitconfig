@@ -10,3 +10,6 @@
     merged = !git branch --merged | egrep -v '\\*|master|main|develop|development'
     mergedd = !git merged | xargs git branch -d
     unstage = reset HEAD --
+
+[core]
+    excludesfile = "~/dotfiles/.gitignore_global"

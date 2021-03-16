@@ -36,6 +36,7 @@
 
 # others
 !/.gitignore
+!/.gitignore_global
 !/README.md
 !/.gitconfig
 
