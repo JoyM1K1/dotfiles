@@ -50,6 +50,11 @@ path=(
 	$path
 )
 
+fpath=(
+	$HOME/dotfiles/.zsh/functions(N-/)
+	$fpath
+)
+
 #
 # Less
 #

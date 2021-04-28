@@ -16,6 +16,9 @@ fi
 
 # Customize to your needs...
 
+autoload -U compinit
+compinit -i
+
 # show dotfiles
 setopt GLOBDOTS
 
