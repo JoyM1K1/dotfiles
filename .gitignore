@@ -3,6 +3,16 @@
 
 ### white list ###
 
+# .vim
+!/.vim
+!/.vim/install.zsh
+!/.vim/vimrc
+!/.vim/toml
+!/.vim/toml/dein.toml
+!/.vim/toml/dein_lazy.toml
+!/.vim/bundles
+!/.vim/bundles/.gitkeep
+
 # .vscode
 !/.vscode
 !/.vscode/install.zsh

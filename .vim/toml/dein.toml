@@ -1,0 +1,55 @@
+# Requied:
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# Statusline
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+	\ 'colorscheme': 'iceberg'
+	\}
+'''
+
+# Directory tree
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+let NERDTreeShowHidden=1
+nnoremap <silent><C-n> :NERDTreeFind<CR>:vertical res 30<CR>
+'''
+
+# Color scheme
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+colorscheme iceberg
+augroup TransparentBG
+  	autocmd!
+	autocmd Colorscheme * highlight Normal ctermbg=none
+	autocmd Colorscheme * highlight NonText ctermbg=none
+	autocmd Colorscheme * highlight LineNr ctermbg=none ctermfg=60
+	autocmd Colorscheme * highlight Folded ctermbg=none
+	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
+	autocmd Colorscheme * highlight CursorLine ctermbg=none
+	autocmd Colorscheme * highlight CursorLineNr ctermbg=none
+	autocmd Colorscheme * highlight Comment ctermfg=246
+augroup END
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+	set signcolumn=yes
+	let g:gitgutter_async = 1
+	let g:gitgutter_sign_modified = 'rw'
+	autocmd Colorscheme * highlight GitGutterAdd ctermbg=none ctermfg=green
+	autocmd Colorscheme * highlight GitGutterChange ctermbg=none ctermfg=yellow
+	autocmd Colorscheme * highlight GitGutterDelete ctermbg=none ctermfg=red
+	autocmd Colorscheme * highlight GitGutterChangeDelete ctermbg=none ctermfg=yellow
+	" autocmd Colorscheme * highlight! link SignColumn LineNr
+	autocmd Colorscheme * highlight! SignColumn ctermbg=none
+'''
+
+#[[plugins]]
+#repo = 'ryanoasis/vim-devicons'
