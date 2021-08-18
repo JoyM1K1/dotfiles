@@ -5,9 +5,12 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Color Scheme
 zstyle :prompt:pure:path color cyan
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:git:branch color green
+
+export GREP_COLOR='1;30;44'
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
