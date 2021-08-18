@@ -15,8 +15,8 @@ let g:lightline = {
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-let NERDTreeShowHidden=1
-nnoremap <silent><C-n> :NERDTreeFind<CR>:vertical res 30<CR>
+	let NERDTreeShowHidden=1
+	nnoremap <silent><C-n> :NERDTreeFind<CR>:vertical res 30<CR>
 '''
 
 # Color scheme
@@ -33,7 +33,8 @@ augroup TransparentBG
 	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
 	autocmd Colorscheme * highlight CursorLine ctermbg=none
 	autocmd Colorscheme * highlight CursorLineNr ctermbg=none
-	autocmd Colorscheme * highlight Comment ctermfg=246
+	autocmd Colorscheme * highlight Comment ctermbg=none ctermfg=246
+	autocmd Colorscheme * highlight Todo ctermbg=none
 augroup END
 '''
 
@@ -51,5 +52,12 @@ hook_add = '''
 	autocmd Colorscheme * highlight! SignColumn ctermbg=none
 '''
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
 #[[plugins]]
 #repo = 'ryanoasis/vim-devicons'
+
+# Syntax Highlight
+[[plugins]]
+repo = 'evidens/vim-twig'
