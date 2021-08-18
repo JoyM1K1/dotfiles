@@ -50,3 +50,9 @@ set incsearch
 set laststatus=2
 set cursorline
 set noswapfile
+set list
+set backspace=2
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set clipboard+=unnamed
+
+set re=0
