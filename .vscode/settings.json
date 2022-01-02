@@ -1,6 +1,45 @@
 {
-    "files.associations": {
-        ".zpreztorc": "shellscript"
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    ".zpreztorc": "shellscript"
+  },
+  "git.autofetch": true,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
     },
-    "git.autofetch": true
+    "prettyhtml": {
+      "printWidth": 100,
+      "singleQuote": false,
+      "wrapAttributes": false,
+      "sortAttributes": false
+    }
+  },
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (Eex)"
+  ],
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
+  "go.addTags": {
+    "tags": "json",
+    "options": "json=omitempty",
+    "promptForTags": false,
+    "transform": "camelcase"
+  }
 }
