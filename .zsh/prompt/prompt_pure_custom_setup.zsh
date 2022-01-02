@@ -133,12 +133,12 @@ prompt_pure_custom_preprompt_render() {
 	preprompt_parts+=('%F{${prompt_pure_custom_colors[path]}}%~%f')
 
 	# Add Arch
-	preprompt_parts+=('%F{${prompt_pure_custom_colors[arch]}}$(arch)%f')
+	preprompt_parts+=('%F{${prompt_pure_custom_colors[arch]}}${prompt_pure_custom_icons[arch]}$(arch)%f')
 
 	# Add Git branch and dirty status info.
 	typeset -gA prompt_pure_custom_vcs_info
 	if [[ -n $prompt_pure_custom_vcs_info[branch] ]]; then
-		local branch="%F{$git_color}"'${prompt_pure_custom_vcs_info[branch]}'
+		local branch="%F{$git_color}"'${prompt_pure_custom_icons[git]}${prompt_pure_custom_vcs_info[branch]}'
 		if [[ -n $prompt_pure_custom_vcs_info[action] ]]; then
 			branch+="|%F{$prompt_pure_custom_colors[git:action]}"'$prompt_pure_custom_vcs_info[action]'"%F{$git_color}"
 		fi
@@ -146,9 +146,15 @@ prompt_pure_custom_preprompt_render() {
 	fi
 	# Git pull/push arrows.
 	if [[ -n $prompt_pure_custom_git_arrows ]]; then
-		preprompt_parts+=('%F{$prompt_pure_custom_colors[git:arrow]}${prompt_pure_custom_git_arrows}%f')
+		preprompt_parts+=('%F{$prompt_pure_custom_colors[git:arrow]}{$prompt_pure_custom_git_arrows}%f')
 	fi
 
+	# Add GCP project id
+	if [ -f "$HOME/.config/gcloud/active_config" ]; then
+		local gcp_profile=$(cat $HOME/.config/gcloud/active_config)
+		project_id=$(awk '/project/{print $3}' $HOME/.config/gcloud/configurations/config_$gcp_profile)
+		preprompt_parts+=('%F{$prompt_pure_custom_colors[cloud_sdk]}${prompt_pure_custom_icons[cloud_sdk]}${project_id}%f')
+	fi
 	# Username and machine, if applicable.
 	[[ -n $prompt_pure_custom_state[username] ]] && preprompt_parts+=($prompt_pure_custom_state[username])
 	# Execution time.
@@ -678,7 +684,8 @@ prompt_pure_custom_setup() {
 	# Set the colors.
 	typeset -gA prompt_pure_custom_colors_default prompt_pure_custom_colors
 	prompt_pure_custom_colors_default=(
-		arch 				 242
+		arch                 242
+		cloud_sdk            039
 		execution_time       yellow
 		git:arrow            cyan
 		git:branch           242
@@ -694,6 +701,16 @@ prompt_pure_custom_setup() {
 		virtualenv           242
 	)
 	prompt_pure_custom_colors=("${(@kv)prompt_pure_custom_colors_default}")
+
+	# Set the icons.
+	typeset -gA prompt_pure_custom_icons_default prompt_pure_custom_icons
+	prompt_pure_custom_icons_default=(
+		arch                 
+		cloud_sdk            
+		git                  
+	)
+	prompt_pure_custom_icons=("${(@kv)prompt_pure_custom_icons_default}")
+	
 
 	add-zsh-hook precmd prompt_pure_custom_precmd
 	add-zsh-hook preexec prompt_pure_custom_preexec
