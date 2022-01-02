@@ -31,12 +31,23 @@ ZRCDIR="$ZDOTDIR/rc"
 #========================================#
 #     CLI init                           #
 #========================================#
+# direnv
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
+# anyenv
 if (( $+commands[anyenv] )); then
   eval "$(anyenv init -)"
+fi
+
+# Cloud SDK
+cloud_sdk_dir=$HOMEBREW_DIR/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
+if [ -f $cloud_sdk_dir/path.zsh.inc ]; then
+	source $cloud_sdk_dir/path.zsh.inc
+fi
+if [ -f $cloud_sdk_dir/completion.zsh.inc ]; then
+	source $cloud_sdk_dir/completion.zsh.inc
 fi
 
 #========================================#
