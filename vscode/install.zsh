@@ -7,11 +7,11 @@ VSCODE_SETTING_DIR=$HOME/Library/Application\ Support/Code/User
 
 files=("settings.json" "keybindings.json")
 for file in $files; do
-    if [[ -f $VSCODE_SETTING_DIR/$file ]]; then
-        echo "replace settings.json with symbolic link"
-        rm -f "$VSCODE_SETTING_DIR/$file"
+    if [[ -e $VSCODE_SETTING_DIR/$file ]]; then
+        ln -is "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
+    else 
+        ln -s "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
     fi
-    ln -s "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
 done
 
 # extensions
