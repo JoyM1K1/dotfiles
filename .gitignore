@@ -5,6 +5,8 @@
 ### white list ###
 
 # .vim
+/.vim/bundles/.cache
+/.vim/bundles/repos
 !/.vim/install.zsh
 !/.vim/vimrc
 !/.vim/toml/dein.toml
