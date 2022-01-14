@@ -10,7 +10,7 @@ for file in $files; do
     if [[ -e $VSCODE_SETTING_DIR/$file ]]; then
         ln -is "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
     else 
-        ln -s "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
+        ln -fs "$DOT_VSCODE_DIR/$file" "$VSCODE_SETTING_DIR/$file"
     fi
 done
 
