@@ -41,5 +41,7 @@
     "options": "json=omitempty",
     "promptForTags": false,
     "transform": "camelcase"
-  }
+  },
+  "editor.fontFamily": "'JetbrainsMono Nerd Font Mono', 'JetbrainsMono Nerd Font', Menlo, Monaco",
+  "scm.inputFontFamily": "editor",
 }

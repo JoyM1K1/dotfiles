@@ -12,13 +12,6 @@
 !/.vim/toml/dein.toml
 !/.vim/toml/dein_lazy.toml
 
-# .vscode
-!/.vscode/install.zsh
-!/.vscode/dump.zsh
-!/.vscode/extensions
-!/.vscode/keybindings.json
-!/.vscode/settings.json
-
 # .zsh
 !/.zsh/install.zsh
 !/.zsh/reinstall.zsh
@@ -31,6 +24,13 @@
 !/Brewfile/Brewfile
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
+
+# vscode
+!/vscode/install.zsh
+!/vscode/dump.zsh
+!/vscode/extensions
+!/vscode/keybindings.json
+!/vscode/settings.json
 
 # Xcode
 !/Xcode/**
