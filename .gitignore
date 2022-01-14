@@ -1,20 +1,16 @@
 # all ignore
 *
+!/**/
 
 ### white list ###
 
 # .vim
-!/.vim
 !/.vim/install.zsh
 !/.vim/vimrc
-!/.vim/toml
 !/.vim/toml/dein.toml
 !/.vim/toml/dein_lazy.toml
-!/.vim/bundles
-!/.vim/bundles/.gitkeep
 
 # .vscode
-!/.vscode
 !/.vscode/install.zsh
 !/.vscode/dump.zsh
 !/.vscode/extensions
@@ -22,32 +18,28 @@
 !/.vscode/settings.json
 
 # .zsh
-!/.zsh
 !/.zsh/install.zsh
 !/.zsh/reinstall.zsh
-!/.zsh/rc/
+!/.zsh/functions/prompt_pure_custom_setup
 !/.zsh/rc/*
-!/.zsh/.zprezto_override
 !/.zsh/.zprezto_override/*
-!/.zsh/prompt/
 !/.zsh/prompt/*
 
 # Brewfile
-!/Brewfile
 !/Brewfile/Brewfile
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
 
 # Xcode
-!/Xcode
-!/Xcode/*
-!/Xcode/KeyBindings
-!/Xcode/KeyBindings/*
+!/Xcode/**
 
 # others
 !/.gitignore
 !/.gitignore_global
 !/README.md
 !/.gitconfig
+
+# Do not ignore .gitkeep
+!.gitkeep
 
 .DS_Store
