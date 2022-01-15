@@ -4,26 +4,18 @@
 
 ### white list ###
 
-# .vim
-/.vim/bundles/.cache
-/.vim/bundles/repos
-!/.vim/install.zsh
-!/.vim/vimrc
-!/.vim/toml/dein.toml
-!/.vim/toml/dein_lazy.toml
-
-# zsh
-!/zsh/install.zsh
-!/zsh/reinstall.zsh
-!/zsh/functions/prompt_pure_custom_setup
-!/zsh/rc/*
-!/zsh/.zprezto_override/*
-!/zsh/prompt/*
-
 # Brewfile
 !/Brewfile/Brewfile
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
+
+# vim
+/vim/bundles/.cache
+/vim/bundles/repos
+!/vim/install.zsh
+!/vim/vimrc
+!/vim/toml/dein.toml
+!/vim/toml/dein_lazy.toml
 
 # vscode
 !/vscode/install.zsh
@@ -34,6 +26,14 @@
 
 # Xcode
 !/Xcode/**
+
+# zsh
+!/zsh/install.zsh
+!/zsh/reinstall.zsh
+!/zsh/functions/prompt_pure_custom_setup
+!/zsh/rc/*
+!/zsh/.zprezto_override/*
+!/zsh/prompt/*
 
 # others
 !/.gitignore
