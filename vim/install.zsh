@@ -10,6 +10,10 @@ fi
 
 if [[ -d ~/.vim ]]; then
     rm -ir ~/.vim
+    if [[ $? -ne 0 ]]; then
+        echo >&2 "\e[31;1mExit installation.\e[0m"
+        exit 1
+    fi
 fi
 
 ln -ins "${CURRENT_DIR}" ~/.vim
