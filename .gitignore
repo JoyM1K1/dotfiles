@@ -12,13 +12,13 @@
 !/.vim/toml/dein.toml
 !/.vim/toml/dein_lazy.toml
 
-# .zsh
-!/.zsh/install.zsh
-!/.zsh/reinstall.zsh
-!/.zsh/functions/prompt_pure_custom_setup
-!/.zsh/rc/*
-!/.zsh/.zprezto_override/*
-!/.zsh/prompt/*
+# zsh
+!/zsh/install.zsh
+!/zsh/reinstall.zsh
+!/zsh/functions/prompt_pure_custom_setup
+!/zsh/rc/*
+!/zsh/.zprezto_override/*
+!/zsh/prompt/*
 
 # Brewfile
 !/Brewfile/Brewfile

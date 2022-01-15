@@ -51,7 +51,7 @@ path=(
 )
 
 fpath=(
-	$HOME/dotfiles/.zsh/functions(N-/)
+	$ZDOTDIR/functions(N-/)
 	$fpath
 )
 
