@@ -17,11 +17,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-
-autoload -U compinit
-compinit -i
-
 # show dotfiles
 setopt GLOBDOTS
 
@@ -55,17 +50,26 @@ fi
 #========================================#
 source "$ZRCDIR/alias.zsh"
 
+#========================================#
+#     completions                        #
+#========================================#
+source "${ZRCDIR}/completions.zsh"
+
 # For apple silicon
 if [ $(arch) = arm64 ]; then
 
-#========================================#
-#     arch *                             #
-#========================================#
-source "$ZRCDIR/arch.zsh"
+  #========================================#
+  #     arch *                             #
+  #========================================#
+  source "$ZRCDIR/arch.zsh"
 
-#========================================#
-#     brew *                             #
-#========================================#
-source "$ZRCDIR/brew.zsh"
+  #========================================#
+  #     brew *                             #
+  #========================================#
+  source "$ZRCDIR/brew.zsh"
 
 fi
+
+# completion initialize
+autoload -U compinit
+compinit -i
