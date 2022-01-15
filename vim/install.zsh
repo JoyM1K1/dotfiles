@@ -8,4 +8,8 @@ if [[ ! -d ${CURRENT_DIR}/bundles/repos/github.com/Shougo/dein.vim ]]; then
     zsh "${CURRENT_DIR}/dein_installer.sh" "${CURRENT_DIR}/bundles"
 fi
 
+if [[ -d ~/.vim ]]; then
+    rm -ir ~/.vim
+fi
+
 ln -ins "${CURRENT_DIR}" ~/.vim
