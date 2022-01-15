@@ -25,7 +25,9 @@
 !/vscode/settings.json
 
 # Xcode
-!/Xcode/**
+!/Xcode/install.zsh
+!/Xcode/*.plist
+!/Xcode/KeyBindings/*.idkeybindings
 
 # zsh
 !/zsh/install.zsh
@@ -43,5 +45,3 @@
 
 # Do not ignore .gitkeep
 !.gitkeep
-
-.DS_Store
