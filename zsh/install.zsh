@@ -1,5 +1,15 @@
 #!/usr/bin/env zsh
+
 setopt EXTENDED_GLOB
+
+CURRENT_DIR=${0:a:h}
+
+# HOMEのzshenvを置き換える
+ln -is "${CURRENT_DIR}/.zprezto_override/zshenv_global" "${HOME}/.zshenv"
+if [[ $? -ne 0 ]]; then
+    echo >&2 "\e[31;1mExit installation.\e[0m"
+    exit 1
+fi
 
 for default_rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
     local dot_rcfile="${ZDOTDIR:-$HOME}/.${default_rcfile:t}"
