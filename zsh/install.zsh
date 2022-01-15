@@ -10,10 +10,13 @@ if [[ $? -ne 0 ]]; then
     echo >&2 "\e[31;1mExit installation.\e[0m"
     exit 1
 fi
+source "${HOME}/.zshenv"
 
-for default_rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    local dot_rcfile="${ZDOTDIR:-$HOME}/.${default_rcfile:t}"
-    local custom_rcfile=${ZDOTDIR:-$HOME}/.zprezto_override/${default_rcfile:t}
+local z_dot_dir=${ZDOTDIR:-$HOME}
+
+for default_rcfile in "${z_dot_dir}"/.zprezto/runcoms/^README.md(.N); do
+    local dot_rcfile="${z_dot_dir}/.${default_rcfile:t}"
+    local custom_rcfile=${z_dot_dir}/.zprezto_override/${default_rcfile:t}
     local rcfile=$default_rcfile
     if [[ -f $custom_rcfile ]]; then
         # .zprezto_override 配下にrcfileがあれば使う
