@@ -12,7 +12,7 @@
     unstage = reset HEAD --
 
 [core]
-    excludesfile = "~/dotfiles/.gitignore_global"
+    excludesfile = ~/dotfiles/.gitignore_global
 
 [merge]
     ff = false
