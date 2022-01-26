@@ -43,6 +43,7 @@
 !/README.md
 !/.gitconfig
 !/install.zsh
+!/Dockerfile
 
 # Do not ignore .gitkeep
 !.gitkeep
