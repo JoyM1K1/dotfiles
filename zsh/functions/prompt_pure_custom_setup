@@ -133,7 +133,9 @@ prompt_pure_custom_preprompt_render() {
 	preprompt_parts+=('%F{${prompt_pure_custom_colors[path]}}%~%f')
 
 	# Add Arch
-	preprompt_parts+=('%F{${prompt_pure_custom_colors[arch]}}${prompt_pure_custom_icons[arch]}$(arch)%f')
+	if (( $+commands[arch] )); then
+		preprompt_parts+=('%F{${prompt_pure_custom_colors[arch]}}${prompt_pure_custom_icons[arch]}$(arch)%f')
+	fi
 
 	# Add Git branch and dirty status info.
 	typeset -gA prompt_pure_custom_vcs_info
