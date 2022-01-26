@@ -42,6 +42,7 @@
 !/.gitignore_global
 !/README.md
 !/.gitconfig
+!/install.zsh
 
 # Do not ignore .gitkeep
 !.gitkeep
