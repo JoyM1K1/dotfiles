@@ -13,6 +13,7 @@
 /vim/bundles/.cache
 /vim/bundles/repos
 !/vim/install.zsh
+!/vim/vim_upgrade.sh
 !/vim/vimrc
 !/vim/toml/dein.toml
 !/vim/toml/dein_lazy.toml
@@ -40,6 +41,7 @@
 # others
 !/.gitignore
 !/.gitignore_global
+!/git_upgrade.sh
 !/README.md
 !/.gitconfig
 !/install.zsh
