@@ -13,3 +13,8 @@ echo-fpath() {
 echo-cdpath() {
     echo ${CDPATH//:/\\n}
 }
+
+key-generate() {
+    ssh-keygen -t ed25519 -m PEM
+}
+
