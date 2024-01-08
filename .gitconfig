@@ -9,6 +9,7 @@
     alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
     merged = !git branch --merged | egrep -v '\\*|master|main|develop|development'
     mergedd = !git merged | xargs git branch -d
+    nomerged = branch --no-merged
     unstage = reset HEAD --
 
 [core]
