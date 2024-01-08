@@ -52,6 +52,7 @@ path=(
 
 fpath=(
 	$ZDOTDIR/functions(N-/)
+	$(brew --prefix asdf)/etc/bash_completion.d(N-/)
 	$fpath
 )
 
