@@ -28,3 +28,13 @@ for default_rcfile in "${z_dot_dir}"/.zprezto/runcoms/^README.md(.N); do
         ln -fs "$rcfile" "$dot_rcfile"
     fi
 done
+
+# completion download
+local -A rc_url_list
+rc_url_list=(
+	_task "https://raw.githubusercontent.com/go-task/task/main/completion/zsh/_task"
+)
+
+for key in ${(k)rc_url_list}; do
+	curl -o "${CURRENT_DIR}/functions/${key}" "${rc_url_list[$key]}"
+done
