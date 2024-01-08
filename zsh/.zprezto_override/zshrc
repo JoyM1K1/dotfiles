@@ -36,6 +36,15 @@ if (( $+commands[asdf] )); then
   . "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
+# go
+if (( $+commands[go] )); then
+  export GOPATH=`go env GOPATH`
+  path=(
+    $GOPATH/bin(N-/)
+    $path
+  )
+fi
+
 # Cloud SDK
 cloud_sdk_dir=$HOMEBREW_DIR/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
 if [ -f $cloud_sdk_dir/path.zsh.inc ]; then

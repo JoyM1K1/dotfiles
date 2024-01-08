@@ -5,7 +5,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-export GOPATH=$HOME/go
 export COMPDUMPFILE="${ZDOTDIR:-$HOME}/.zcompdump"
 export HOMEBREW_DIR=/opt/homebrew
 export DOTFILES_DIR=~/dotfiles
