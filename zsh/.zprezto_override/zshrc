@@ -31,9 +31,9 @@ if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
-# anyenv
-if (( $+commands[anyenv] )); then
-  eval "$(anyenv init -)"
+# asdf
+if (( $+commands[asdf] )); then
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
 # Cloud SDK
