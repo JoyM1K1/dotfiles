@@ -12,3 +12,8 @@ fi
 if (( $+commands[docker-compose] )) && [[ ! -f $ZDOTDIR/functions/_docker-compose ]]; then
     curl -fLo $ZDOTDIR/functions/_docker-compose https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose
 fi
+
+# aws https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-completion.html#cli-command-completion-linux
+if (( $+commands[aws_completer] )); then
+	complete -C "${commands[aws_completer]}" aws
+fi

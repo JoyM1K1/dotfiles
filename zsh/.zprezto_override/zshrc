@@ -23,6 +23,11 @@ setopt GLOBDOTS
 
 ZRCDIR="$ZDOTDIR/rc"
 
+# completion initialize
+autoload bashcompinit && bashcompinit
+autoload -U compinit
+compinit -i
+
 #========================================#
 #     CLI init                           #
 #========================================#
@@ -79,6 +84,3 @@ if [ $(arch) = arm64 ]; then
 
 fi
 
-# completion initialize
-autoload -U compinit
-compinit -i
