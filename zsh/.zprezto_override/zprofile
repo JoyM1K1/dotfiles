@@ -51,8 +51,8 @@ path=(
 )
 
 fpath=(
+	$HOMEBREW_DIR/share/zsh/site-functions(N-/)
 	$ZDOTDIR/functions(N-/)
-	$(brew --prefix asdf)/etc/bash_completion.d(N-/)
 	$fpath
 )
 
