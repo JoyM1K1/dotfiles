@@ -43,8 +43,8 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-	/opt/homebrew/bin(N-/)
-	/opt/homebrew/opt/openjdk/bin(N-/)
+	$HOMEBREW_DIR/bin(N-/)
+	$HOMEBREW_DIR/opt/openjdk/bin(N-/)
 	/usr/local/{bin,sbin}(N-/)
 	$HOME/dotfiles/bin(N-/)
 	$path
