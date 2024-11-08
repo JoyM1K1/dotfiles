@@ -9,6 +9,11 @@
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
 
+# git
+!/git/.gitconfig_global
+!/git/.gitignore_global
+!/git/install.zsh
+
 # vim
 /vim/bundles/.cache
 /vim/bundles/repos

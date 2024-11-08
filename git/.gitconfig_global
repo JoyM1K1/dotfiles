@@ -1,3 +1,7 @@
+[user]
+    name = JoyM1K1
+    email = kohchanman14@gmail.com
+
 [init]
     defaultBranch = main
 
@@ -15,7 +19,7 @@
     unstage = reset HEAD --
 
 [core]
-    excludesfile = ~/dotfiles/.gitignore_global
+    excludesfile = ~/dotfiles/git/.gitignore_global
 
 [merge]
     ff = false
