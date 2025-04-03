@@ -45,4 +45,6 @@
   "editor.fontFamily": "'JetbrainsMono Nerd Font Mono', 'JetbrainsMono Nerd Font', Menlo, Monaco",
   "scm.inputFontFamily": "editor",
   "editor.renderWhitespace": "boundary",
+  "window.nativeTabs": true,
+  "git.enableCommitSigning": true,
 }
