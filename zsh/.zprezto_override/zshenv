@@ -7,7 +7,7 @@
 
 export COMPDUMPFILE="${ZDOTDIR:-$HOME}/.zcompdump"
 export HOMEBREW_DIR=/opt/homebrew
-export DOTFILES_DIR=~/dotfiles
+export DOTFILES_DIR="$HOME/dotfiles"
 export BREWFILE_SUFFIX=
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
