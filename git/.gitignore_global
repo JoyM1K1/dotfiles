@@ -4,8 +4,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 
 # Thumbnails
 ._*
@@ -31,6 +30,3 @@ Temporary Items
 
 # vscode
 .vscode
-
-# asdf
-.tool-versions
