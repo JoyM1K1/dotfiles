@@ -10,6 +10,11 @@ export HOMEBREW_DIR=/opt/homebrew
 export DOTFILES_DIR="$HOME/dotfiles"
 export BREWFILE_SUFFIX=
 
+# Load local environment variables if the file exists
+if [[ -f "${ZDOTDIR:-$HOME}/.zshenv_local" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshenv_local"
+fi
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
