@@ -45,6 +45,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
 	$HOMEBREW_DIR/{bin,sbin}(N-/)
 	$HOMEBREW_DIR/opt/openjdk/bin(N-/)
+	$HOME/.bun/bin(N-/)
 	/usr/local/{bin,sbin}(N-/)
 	$HOME/dotfiles/bin(N-/)
 	$path
