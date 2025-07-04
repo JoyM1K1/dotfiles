@@ -9,6 +9,9 @@
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
 
+# ghostty
+!/ghostty/config.conf
+
 # git
 !/git/.gitconfig_global
 !/git/.gitignore_global
