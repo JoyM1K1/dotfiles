@@ -9,6 +9,9 @@
 !/Brewfile/install.zsh
 !/Brewfile/dump.zsh
 
+# claude
+!/claude/settings.json
+
 # ghostty
 !/ghostty/config.conf
 
