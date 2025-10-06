@@ -46,7 +46,7 @@ if (( $+commands[go] )); then
 fi
 
 if (( $+commands[gpg] )); then
-  export GPG_TTY=$(TTY)
+  export GPG_TTY=$(tty)
 fi
 
 # Cloud SDK
