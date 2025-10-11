@@ -26,3 +26,10 @@
 
 [pull]
     ff = only
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+
