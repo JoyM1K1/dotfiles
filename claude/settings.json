@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "mcp__serena"
     ],
     "deny": [
       "Bash(sudo:*)",
