@@ -31,7 +31,9 @@ Temporary Items
 
 # vscode
 .vscode
-.claude
+
+# claude
+.claude/*.local.*
 
 # asdf
 .tool-versions
