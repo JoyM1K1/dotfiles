@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "mcp__serena"
+      "mcp__serena",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)"
     ],
     "deny": [
       "Bash(sudo:*)",
