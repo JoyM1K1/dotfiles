@@ -154,4 +154,7 @@
     "sound": "off",
     "announcement": "auto"
   },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
 }
