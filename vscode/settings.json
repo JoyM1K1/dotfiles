@@ -36,6 +36,7 @@
   "editor.renderWhitespace": "boundary",
   "window.nativeTabs": true,
   "git.enableCommitSigning": true,
+  "security.promptForLocalFileProtocolHandling": false,
   "accessibility.signals.clear": {
     "sound": "off",
     "announcement": "auto"
