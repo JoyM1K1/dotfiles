@@ -155,6 +155,7 @@
     "sound": "off",
     "announcement": "auto"
   },
+  "diffEditor.ignoreTrimWhitespace": false,
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
