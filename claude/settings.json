@@ -36,5 +36,9 @@
       "Bash(mv:*)"
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "$DOTFILES_DIR/claude/statusline.js"
+  },
   "alwaysThinkingEnabled": true
 }
