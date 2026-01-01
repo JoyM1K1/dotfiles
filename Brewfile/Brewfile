@@ -79,6 +79,7 @@ brew "teamookla/speedtest/speedtest"
 cask "7777"
 cask "alt-tab"
 cask "arc"
+cask "bitwarden"
 cask "blackhole-16ch"
 cask "blackhole-2ch"
 cask "claude"
@@ -118,7 +119,6 @@ cask "xcodes-app"
 cask "zen"
 cask "zoom"
 mas "Apple Configurator", id: 1037126344
-mas "Bitwarden", id: 1352778147
 mas "CleanMyMac", id: 1339170533
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
