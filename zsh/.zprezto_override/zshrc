@@ -49,6 +49,10 @@ if (( $+commands[gpg] )); then
   export GPG_TTY=$(tty)
 fi
 
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
+
 if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"
 fi
