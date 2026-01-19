@@ -2,7 +2,7 @@
   "files.insertFinalNewline": true,
   "files.associations": {
     ".zpreztorc": "shellscript",
-    "**/.claude/skills/*/SKILL.md": "markdown"
+    "**/skills/*/SKILL.md": "markdown"
   },
   "git.autofetch": true,
   "auto-close-tag.activationOnLanguage": [
