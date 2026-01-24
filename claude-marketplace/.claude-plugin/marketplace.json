@@ -1,0 +1,16 @@
+{
+  "name": "joy-plugins",
+  "owner": {
+    "name": "Joy"
+  },
+  "metadata": {
+    "description": "Joy's plugins"
+  },
+  "plugins": [
+    {
+      "name": "joy-docs",
+      "source": "./joy-docs",
+      "description": "Joy's documentation plugin"
+    }
+  ]
+}
