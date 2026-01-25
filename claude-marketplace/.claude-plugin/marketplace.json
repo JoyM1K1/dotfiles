@@ -11,6 +11,11 @@
       "name": "joy-docs",
       "source": "./joy-docs",
       "description": "Joy's documentation plugin"
+    },
+    {
+      "name": "joy-git",
+      "source": "./joy-git",
+      "description": "Joy's git plugin"
     }
   ]
 }
