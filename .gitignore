@@ -4,6 +4,9 @@
 
 ### white list ###
 
+# assets
+!/assets/.gitignore
+
 # Brewfile
 !/Brewfile/Brewfile
 !/Brewfile/install.zsh
