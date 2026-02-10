@@ -66,5 +66,6 @@
     "type": "command",
     "command": "$DOTFILES_DIR/claude/statusline.js"
   },
+  "language": "日本語",
   "alwaysThinkingEnabled": true
 }
