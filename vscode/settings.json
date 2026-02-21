@@ -163,5 +163,9 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  // claudeCode
+  "claudeCode.selectedModel": "default",
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.useTerminal": true,
   "terminal.integrated.stickyScroll.enabled": false,
 }
