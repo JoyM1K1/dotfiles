@@ -4,67 +4,11 @@
 
 ### white list ###
 
-# assets
-!/assets/.gitignore
+!.gitignore
 
-# Brewfile
-!/Brewfile/Brewfile
-!/Brewfile/install.zsh
-!/Brewfile/dump.zsh
-
-# claude
-!/claude/
-!/claude/**/*
-/claude/**/*.local*
-
-# claude-marketplace
-!/claude-marketplace/
-!/claude-marketplace/**/*
-/claude-marketplace/**/*.local*
-
-# ghostty
-!/ghostty/config.conf
-
-# git
-!/git/.gitconfig_global
-!/git/.gitignore_global
-!/git/install.zsh
-
-# vim
-/vim/bundles/.cache
-/vim/bundles/repos
-!/vim/install.zsh
-!/vim/vim_upgrade.sh
-!/vim/vimrc
-!/vim/toml/dein.toml
-!/vim/toml/dein_lazy.toml
-
-# vscode
-!/vscode/install.zsh
-!/vscode/dump.zsh
-!/vscode/extensions
-!/vscode/keybindings.json
-!/vscode/settings.json
-
-# Xcode
-!/Xcode/install.zsh
-!/Xcode/*.plist
-!/Xcode/KeyBindings/*.idkeybindings
-
-# zsh
-!/zsh/install.zsh
-!/zsh/reinstall.zsh
-!/zsh/functions/prompt_pure_custom_setup
-!/zsh/rc/*
-!/zsh/.zprezto_override/*
-!/zsh/prompt/*
-
-# others
-!/.gitignore
-!/.gitignore_global
+# root
 !/git_upgrade.sh
 !/README.md
-!/.gitconfig
 !/install.zsh
 !/Dockerfile
 

@@ -1,0 +1,6 @@
+!/install.zsh
+!/reinstall.zsh
+!/functions/prompt_pure_custom_setup
+!/rc/*
+!/.zprezto_override/*
+!/prompt/*

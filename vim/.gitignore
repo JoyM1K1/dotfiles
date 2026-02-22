@@ -1,0 +1,7 @@
+/bundles/.cache
+/bundles/repos
+!/install.zsh
+!/vim_upgrade.sh
+!/vimrc
+!/toml/dein.toml
+!/toml/dein_lazy.toml
