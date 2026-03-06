@@ -10,6 +10,7 @@
     sw = switch
     co = commit
     pp = pull -p
+    wt = worktree
     fix = commit --amend
     graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
     alias = !git config --get-regexp '^alias\\.' | sed 's/alias\\.\\([^ ]*\\) \\(.*\\)/\\1\\\t => \\2/' | sort
