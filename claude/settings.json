@@ -58,7 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay $DOTFILES_DIR/assets/stop.mp3"
+            "command": "afplay $DOTFILES_DIR/assets/stop.mp3 2> /dev/null"
           }
         ]
       }
