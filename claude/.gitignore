@@ -1,3 +1,4 @@
+!/install.zsh
 !/settings.json
 !/statusline.js
 /**/*.local*
