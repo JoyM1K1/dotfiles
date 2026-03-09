@@ -10,6 +10,8 @@ for install_file in ${CURRENT_DIR}/*/install.zsh; do
         zsh $install_file
         if [[ $? -eq 0 ]]; then
             echo "\e[32;1mInstallation successed!\e[0m🎉"
+        else
+            echo "\e[31;1mInstallation failed: ${dir}\e[0m"
         fi
     fi
 done

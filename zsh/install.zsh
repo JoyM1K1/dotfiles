@@ -3,9 +3,10 @@
 setopt EXTENDED_GLOB
 
 CURRENT_DIR=${0:a:h}
+source "${CURRENT_DIR}/../lib/utils.zsh"
 
 # HOMEのzshenvを置き換える
-ln -is "${CURRENT_DIR}/.zprezto_override/zshenv_global" "${HOME}/.zshenv"
+safe_link "${CURRENT_DIR}/.zprezto_override/zshenv_global" "${HOME}/.zshenv"
 if [[ $? -ne 0 ]]; then
     echo >&2 "\e[31;1mExit installation.\e[0m"
     exit 1
@@ -22,11 +23,7 @@ for default_rcfile in "${z_dot_dir}"/.zprezto/runcoms/^README.md(.N); do
         # .zprezto_override 配下にrcfileがあれば使う
         rcfile=$custom_rcfile
     fi
-    if [[ -f $dot_rcfile ]]; then
-        ln -is "$rcfile" "$dot_rcfile"
-    else
-        ln -fs "$rcfile" "$dot_rcfile"
-    fi
+    safe_link "$rcfile" "$dot_rcfile"
 done
 
 # completion download
