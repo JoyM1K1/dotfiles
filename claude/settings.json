@@ -5,6 +5,7 @@
       "Bash(git status:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)",
       "Bash(gh issue view:*)",
       "Bash(gh run check:*)",
       "Bash(gh run view:*)"
