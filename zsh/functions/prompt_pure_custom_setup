@@ -162,14 +162,10 @@ prompt_pure_custom_preprompt_render() {
 	# Execution time.
 	[[ -n $prompt_pure_custom_cmd_exec_time ]] && preprompt_parts+=('%F{$prompt_pure_custom_colors[execution_time]}${prompt_pure_custom_cmd_exec_time}%f')
 
-	local cleaned_ps1=$PROMPT
-	local -H MATCH MBEGIN MEND
-	if [[ $PROMPT = *$prompt_newline* ]]; then
-		# Remove everything from the prompt until the newline. This
-		# removes the preprompt and only the original PROMPT remains.
-		cleaned_ps1=${PROMPT##*${prompt_newline}}
-	fi
-	unset MATCH MBEGIN MEND
+	# Use the saved base prompt to avoid pattern matching issues caused by
+	# terminal shell integrations (e.g. Ghostty) inserting OSC sequences
+	# into PROMPT that break prompt_newline detection.
+	local cleaned_ps1=${prompt_pure_custom_base_prompt:-$PROMPT}
 
 	# Construct the new prompt with a clean preprompt.
 	local -ah ps1
@@ -732,6 +728,12 @@ prompt_pure_custom_setup() {
 
 	# Prompt turns red if the previous command didn't exit with 0.
 	PROMPT+='%(?.%F{$prompt_pure_custom_colors[prompt:success]}.%F{$prompt_pure_custom_colors[prompt:error]})${prompt_pure_custom_state[prompt]}%f '
+
+	# Save the base prompt (without preprompt) so that preprompt_render can
+	# reliably reconstruct PROMPT. Ghostty's shell integration inserts OSC 133
+	# markers into PS1 which breaks the pattern-based extraction of the base
+	# prompt from PROMPT.
+	typeset -g prompt_pure_custom_base_prompt=$PROMPT
 
 	# Indicate continuation prompt by … and use a darker color for it.
 	PROMPT2='%F{242}%_… %f%(?.%F{magenta}.%F{red})${prompt_pure_custom_state[prompt]}%f '
