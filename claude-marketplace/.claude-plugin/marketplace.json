@@ -16,6 +16,11 @@
       "name": "joy-git",
       "source": "./joy-git",
       "description": "Joy's git plugin"
+    },
+    {
+      "name": "joy-claude",
+      "source": "./joy-claude",
+      "description": "Joy's claude plugin"
     }
   ]
 }
