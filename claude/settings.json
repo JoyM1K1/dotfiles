@@ -70,7 +70,8 @@
   },
   "enabledPlugins": {
     "joy-docs@joy-plugins": true,
-    "joy-git@joy-plugins": true
+    "joy-git@joy-plugins": true,
+    "joy-claude@joy-plugins": true
   },
   "language": "日本語",
   "alwaysThinkingEnabled": true
