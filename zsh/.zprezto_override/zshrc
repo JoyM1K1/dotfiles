@@ -92,6 +92,17 @@ if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"
 fi
 
+# zeno.zsh (abbreviation + completion)
+export ZENO_HOME="$ZDOTDIR/rc/zeno"
+if [[ -f "$ZDOTDIR/plugins/zeno.zsh/zeno.zsh" ]]; then
+  source "$ZDOTDIR/plugins/zeno.zsh/zeno.zsh"
+  bindkey ' '  zeno-auto-snippet
+  bindkey '^m' zeno-auto-snippet-and-accept-line
+  bindkey '^i' zeno-completion
+  bindkey '^r' zeno-history-selection
+  bindkey '^x^s' zeno-insert-snippet
+fi
+
 # Cloud SDK
 cloud_sdk_dir=$HOMEBREW_DIR/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
 if [ -f $cloud_sdk_dir/path.zsh.inc ]; then

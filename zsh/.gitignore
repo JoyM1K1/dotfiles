@@ -1,5 +1,8 @@
 !/install.zsh
 !/reinstall.zsh
 !/rc/*
+!/rc/zeno/*
 !/.zprezto_override/*
 !/prompt/*
+!/plugins/
+!/plugins/zeno.zsh
