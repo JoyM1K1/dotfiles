@@ -2,7 +2,12 @@
 !/reinstall.zsh
 !/rc/*
 !/rc/zeno/*
-!/.zprezto_override/*
+!/.zshrc
+!/.zshenv
+!/.zprofile
+!/.zlogin
+!/.zlogout
+!/zshenv_global
 !/prompt/*
 !/plugins/
 !/plugins/zeno.zsh
