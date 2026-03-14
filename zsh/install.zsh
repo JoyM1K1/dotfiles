@@ -15,15 +15,9 @@ source "${HOME}/.zshenv"
 
 local z_dot_dir=${ZDOTDIR:-$HOME}
 
-for default_rcfile in "${z_dot_dir}"/.zprezto/runcoms/^README.md(.N); do
-    local dot_rcfile="${z_dot_dir}/.${default_rcfile:t}"
-    local custom_rcfile=${z_dot_dir}/.zprezto_override/${default_rcfile:t}
-    local rcfile=$default_rcfile
-    if [[ -f $custom_rcfile ]]; then
-        # .zprezto_override 配下にrcfileがあれば使う
-        rcfile=$custom_rcfile
-    fi
-    safe_link "$rcfile" "$dot_rcfile"
+# rcfileのシンボリックリンクを作成
+for rcname in zshenv zshrc zprofile zlogin zlogout; do
+    safe_link "${CURRENT_DIR}/.zprezto_override/${rcname}" "${z_dot_dir}/.${rcname}"
 done
 
 # completion download
