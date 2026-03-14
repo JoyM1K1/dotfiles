@@ -38,6 +38,7 @@
   "window.nativeTabs": true,
   "git.enableCommitSigning": true,
   "security.promptForLocalFileProtocolHandling": false,
+  "docker.extension.enableComposeLanguageServer": false,
   "accessibility.signals.clear": {
     "sound": "off",
     "announcement": "auto"
@@ -157,12 +158,14 @@
     "announcement": "auto"
   },
   "diffEditor.ignoreTrimWhitespace": false,
+  "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "githubPullRequests.pullBranch": "never",
   // claudeCode
   "claudeCode.selectedModel": "default",
   "claudeCode.preferredLocation": "panel",
