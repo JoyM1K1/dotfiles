@@ -14,3 +14,12 @@ snippets:
   - name: git pull
     keyword: gl
     snippet: git pull
+  - name: zellij
+    keyword: zj
+    snippet: zellij
+  - name: list
+    keyword: ll
+    snippet: eza --icons -al --group-directories-first --git
+  - name: tree
+    keyword: lt
+    snippet: eza --tree --level=2 --icons
