@@ -9,6 +9,7 @@ export COMPDUMPFILE="${ZDOTDIR:-$HOME}/.zcompdump"
 export HOMEBREW_DIR=/opt/homebrew
 export DOTFILES_DIR="$HOME/dotfiles"
 export BREWFILE_SUFFIX=
+export ZELLIJ_CONFIG_FILE="$DOTFILES_DIR/zellij/config.kdl"
 
 # Load local environment variables if the file exists
 if [[ -f "${ZDOTDIR:-$HOME}/.zshenv_local" ]]; then
