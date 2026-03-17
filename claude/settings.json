@@ -71,7 +71,14 @@
   "enabledPlugins": {
     "joy-docs@joy-plugins": true,
     "joy-git@joy-plugins": true,
-    "joy-claude@joy-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "joy-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "$DOTFILES_DIR/claude-marketplace"
+      }
+    }
   },
   "language": "日本語",
   "alwaysThinkingEnabled": true
