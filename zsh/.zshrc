@@ -53,7 +53,7 @@ zstyle ':completion:*' menu select
 #========================================#
 #     Plugins                            #
 #========================================#
-source $HOMEBREW_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_DIR/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $HOMEBREW_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #========================================#
