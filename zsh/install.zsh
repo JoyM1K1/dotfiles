@@ -10,7 +10,7 @@ if ! (( $+commands[mise] )); then
     log_err "mise が見つかりません。先に brew を実行してください。"
     exit 1
 fi
-mise use deno@latest
+mise use -g deno@latest
 
 # HOMEのzshenvを置き換える
 safe_link "${CURRENT_DIR}/zshenv_global" "${HOME}/.zshenv"
