@@ -32,10 +32,6 @@ ghostty:
 zellij:
     zsh {{dotfiles_dir}}/zellij/install.zsh
 
-# Tmux設定
-tmux:
-    zsh {{dotfiles_dir}}/tmux/install.zsh
-
 # Starship設定
 starship:
     zsh {{dotfiles_dir}}/starship/install.zsh
