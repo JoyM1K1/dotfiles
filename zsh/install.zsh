@@ -5,6 +5,13 @@ setopt EXTENDED_GLOB
 CURRENT_DIR=${0:a:h}
 source "${CURRENT_DIR}/../lib/utils.zsh"
 
+# zeno.zsh が deno を必要とするため mise 経由でインストール
+if ! (( $+commands[mise] )); then
+    log_err "mise が見つかりません。先に brew を実行してください。"
+    exit 1
+fi
+mise use deno@latest
+
 # HOMEのzshenvを置き換える
 safe_link "${CURRENT_DIR}/zshenv_global" "${HOME}/.zshenv"
 if [[ $? -ne 0 ]]; then
