@@ -1,16 +1,24 @@
 # Joy's dotfiles
 
-## Usage
+## 新規マシン
 
-1. Clone this repository
+```sh
+curl -fsSL https://raw.githubusercontent.com/JoyM1K1/dotfiles/main/bootstrap.zsh | zsh
+```
+
+## 既存マシン
 
 ```sh
 gh repo clone JoyM1K1/dotfiles -- --recursive
+cd dotfiles
+just install
 ```
 
-2. Install it!
+## コマンド
 
 ```sh
-cd dotfiles
-./install.zsh
+just install        # 全コンポーネントをインストール
+just zsh            # 個別インストール
+just -n install     # dry-run (何が実行されるか確認)
+just -l             # レシピ一覧
 ```

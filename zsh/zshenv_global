@@ -1,4 +1,5 @@
-export ZDOTDIR=$HOME/dotfiles/zsh
+# このファイルの実体パスからdotfilesの場所を解決
+export ZDOTDIR="${${(%):-%x}:A:h}"
 
 if [[ -f "$ZDOTDIR/.zshenv" ]]; then
 	source "$ZDOTDIR/.zshenv"

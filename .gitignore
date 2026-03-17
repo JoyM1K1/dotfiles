@@ -9,7 +9,8 @@
 # root
 !/git_upgrade.sh
 !/README.md
-!/install.zsh
+!/justfile
+!/bootstrap.zsh
 !/Dockerfile
 
 # Do not ignore .gitkeep

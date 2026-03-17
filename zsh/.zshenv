@@ -7,7 +7,7 @@
 
 export COMPDUMPFILE="${ZDOTDIR:-$HOME}/.zcompdump"
 export HOMEBREW_DIR=/opt/homebrew
-export DOTFILES_DIR="$HOME/dotfiles"
+export DOTFILES_DIR="${ZDOTDIR:h}"
 export BREWFILE_SUFFIX=
 export ZELLIJ_CONFIG_FILE="$DOTFILES_DIR/zellij/config.kdl"
 
