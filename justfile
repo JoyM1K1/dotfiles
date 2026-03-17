@@ -6,7 +6,7 @@ set dotenv-load := false
 dotfiles_dir := justfile_directory()
 
 # 全コンポーネントをインストール
-install: brew zsh git nvim ghostty zellij tmux starship claude vscode vim
+install: brew zsh git nvim ghostty zellij tmux starship claude vscode vim karabiner
 
 # Homebrew パッケージ
 brew:
@@ -51,3 +51,7 @@ vscode:
 # Vim設定
 vim:
     zsh {{dotfiles_dir}}/vim/install.zsh
+
+# Karabiner-Elements設定
+karabiner:
+    zsh {{dotfiles_dir}}/karabiner/install.zsh
