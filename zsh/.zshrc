@@ -66,6 +66,10 @@ ZRCDIR="$ZDOTDIR/rc"
 #========================================#
 #     CLI init                           #
 #========================================#
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+fi
+
 # direnv
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
@@ -86,10 +90,6 @@ fi
 
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
-fi
-
-if (( $+commands[mise] )); then
-  eval "$(mise activate zsh)"
 fi
 
 # zeno.zsh (abbreviation + completion)
