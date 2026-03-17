@@ -3,9 +3,13 @@
 set -eu
 
 DOTFILES_REPO="JoyM1K1/dotfiles"
-DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+DEFAULT_DIR="$HOME/dotfiles"
 
 echo "\e[34;1m==> dotfiles bootstrap\e[0m"
+
+printf "dotfiles のインストール先 [%s]: " "$DEFAULT_DIR" > /dev/tty
+read -r DOTFILES_DIR < /dev/tty
+DOTFILES_DIR="${DOTFILES_DIR:-$DEFAULT_DIR}"
 
 # 1. Xcode Command Line Tools
 if ! xcode-select -p &>/dev/null; then
