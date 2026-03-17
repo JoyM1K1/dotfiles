@@ -43,7 +43,6 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-	${ASDF_DATA_DIR:-$HOME/.asdf}/shims(N-/)
 	$HOMEBREW_DIR/{bin,sbin}(N-/)
 	$HOMEBREW_DIR/opt/openjdk/bin(N-/)
 	$HOME/.local/bin(N-/)

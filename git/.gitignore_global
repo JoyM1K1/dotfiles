@@ -35,9 +35,6 @@ Temporary Items
 # claude
 .claude/*.local.*
 
-# asdf
-.tool-versions
-
 # Serena
 .serena
 
