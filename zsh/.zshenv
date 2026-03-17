@@ -10,6 +10,7 @@ export HOMEBREW_DIR=/opt/homebrew
 export DOTFILES_DIR="${ZDOTDIR:h}"
 export BREWFILE_SUFFIX=
 export ZELLIJ_CONFIG_FILE="$DOTFILES_DIR/zellij/config.kdl"
+export STARSHIP_CONFIG="$DOTFILES_DIR/starship/starship.toml"
 
 # Load local environment variables if the file exists
 if [[ -f "${ZDOTDIR:-$HOME}/.zshenv_local" ]]; then
