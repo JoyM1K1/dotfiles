@@ -19,9 +19,6 @@
     nomerged = branch --no-merged
     unstage = reset HEAD --
 
-[core]
-    excludesfile = ~/dotfiles/git/.gitignore_global
-
 [merge]
     ff = false
 
