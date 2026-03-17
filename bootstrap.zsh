@@ -18,7 +18,7 @@ fi
 # 2. Homebrew
 if ! command -v brew &>/dev/null; then
     echo "\e[34;1m==> Homebrew をインストール中...\e[0m"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/tty
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
