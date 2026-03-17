@@ -71,6 +71,7 @@
   "enabledPlugins": {
     "joy-docs@joy-plugins": true,
     "joy-git@joy-plugins": true,
+    "joy-claude@joy-plugins": true
   },
   "extraKnownMarketplaces": {
     "joy-plugins": {
