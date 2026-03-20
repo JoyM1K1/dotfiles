@@ -82,5 +82,6 @@
     }
   },
   "language": "日本語",
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high"
 }
