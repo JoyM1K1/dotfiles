@@ -98,7 +98,16 @@ export ZENO_HOME="$ZDOTDIR/rc/zeno"
 if [[ -f "$ZDOTDIR/plugins/zeno.zsh/zeno.zsh" ]]; then
   source "$ZDOTDIR/plugins/zeno.zsh/zeno.zsh"
   bindkey ' '  zeno-auto-snippet
-  bindkey '^m' zeno-auto-snippet-and-accept-line
+
+  # autosuggestionのゴーストテキストをクリアしてからaccept-lineする
+  _zeno_accept_line() {
+    POSTDISPLAY=
+    zle -R
+    zle zeno-auto-snippet-and-accept-line
+  }
+  zle -N _zeno_accept_line
+  bindkey '^m' _zeno_accept_line
+
   bindkey '^i' zeno-completion
   bindkey '^r' zeno-history-selection
   bindkey '^x^s' zeno-insert-snippet
