@@ -23,3 +23,6 @@ snippets:
   - name: tree
     keyword: lt
     snippet: eza --tree --level=2 --icons
+  - name: lazygit
+    keyword: lg
+    snippet: lazygit
