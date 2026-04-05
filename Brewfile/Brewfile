@@ -75,7 +75,6 @@ brew "openapi-generator"
 brew "pinentry-mac"
 brew "poppler"
 brew "portaudio"
-brew "powershell", link: false
 brew "python@3.11"
 brew "python@3.9"
 brew "qt"
