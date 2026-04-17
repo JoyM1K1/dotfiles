@@ -1,4 +1,5 @@
 !/install.zsh
 !/settings.json
 !/statusline.js
+!/CLAUDE.md
 /**/*.local*
