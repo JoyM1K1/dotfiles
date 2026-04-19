@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "mcp__serena",
       "Bash(git status:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr diff:*)",
