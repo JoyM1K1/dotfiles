@@ -146,3 +146,8 @@ if [ $(arch) = arm64 ]; then
   source "$ZRCDIR/brew.zsh"
 
 fi
+
+# Vite+ bin (https://viteplus.dev)
+if [[ -f "$HOME/.vite-plus/env" ]]; then
+  . "$HOME/.vite-plus/env"
+fi
