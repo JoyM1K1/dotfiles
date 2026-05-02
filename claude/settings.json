@@ -35,7 +35,8 @@
       "Bash(gh pr review:*)",
       "Bash(rm:*)",
       "Bash(mv:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "PermissionRequest": [
