@@ -30,7 +30,7 @@ Temporary Items
 .envrc
 
 # vscode
-.vscode
+.vscode/*
 
 # claude
 .claude/*.local.*
