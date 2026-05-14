@@ -32,7 +32,7 @@
     "promptForTags": false,
     "transform": "camelcase"
   },
-  "editor.fontFamily": "'JetbrainsMono Nerd Font Mono', 'JetbrainsMono Nerd Font', Menlo, Monaco",
+  "editor.fontFamily": "'JetbrainsMono Nerd Font Mono', 'JetbrainsMono Nerd Font', HackGen, Menlo, Monaco",
   "scm.inputFontFamily": "editor",
   "editor.renderWhitespace": "boundary",
   "window.nativeTabs": true,
