@@ -169,4 +169,5 @@
   "claudeCode.useTerminal": true,
   "terminal.integrated.stickyScroll.enabled": false,
   "workbench.colorTheme": "Dark Modern",
+  "git.detectWorktrees": true,
 }
