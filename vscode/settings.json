@@ -170,4 +170,5 @@
   "terminal.integrated.stickyScroll.enabled": false,
   "workbench.colorTheme": "Dark Modern",
   "git.detectWorktrees": true,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
