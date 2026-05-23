@@ -136,6 +136,7 @@ cask "slack"
 cask "tailscale-app"
 cask "visual-studio-code"
 cask "xcodes-app"
+cask "zed"
 cask "zen"
 cask "zoom"
 mas "Apple Configurator", id: 1037126344
