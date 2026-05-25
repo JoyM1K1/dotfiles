@@ -32,6 +32,9 @@ Temporary Items
 .claude/*.local.*
 .claude/worktrees/
 
+# codex
+.codex/*
+
 # Serena
 .serena
 
