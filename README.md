@@ -3,7 +3,7 @@
 ## 新規マシン
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/JoyM1K1/dotfiles/main/bootstrap.zsh | zsh
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/JoyM1K1/dotfiles/main/bootstrap.zsh)"
 ```
 
 ## 既存マシン
