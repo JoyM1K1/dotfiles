@@ -48,7 +48,7 @@ path=(
 	$HOME/.local/bin(N-/)
 	$HOME/.bun/bin(N-/)
 	/usr/local/{bin,sbin}(N-/)
-	$HOME/dotfiles/bin(N-/)
+	$DOTFILES_DIR/bin(N-/)
 	$path
 )
 
