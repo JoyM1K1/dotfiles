@@ -1,0 +1,65 @@
+{
+  "title": "F20 Layer Mouse Clicks",
+  "rules": [
+    {
+      "description": "F20 + J/K → マウス左/右クリック",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f20",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [
+            { "set_variable": { "name": "f20_layer", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "f20_layer", "value": 0 } }
+          ],
+          "to_if_alone": [
+            { "key_code": "f20" }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [
+            { "pointing_button": "button1" }
+          ],
+          "conditions": [
+            { "type": "variable_if", "name": "f20_layer", "value": 1 }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [
+            { "pointing_button": "button2" }
+          ],
+          "conditions": [
+            { "type": "variable_if", "name": "f20_layer", "value": 1 }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "n",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [
+            { "pointing_button": "button1", "modifiers": ["left_command"] }
+          ],
+          "conditions": [
+            { "type": "variable_if", "name": "f20_layer", "value": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}
