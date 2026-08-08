@@ -79,15 +79,31 @@
     "command": "$DOTFILES_DIR/claude/statusline.js"
   },
   "enabledPlugins": {
+    "joy-claude@joy-plugins": true,
     "joy-docs@joy-plugins": true,
     "joy-git@joy-plugins": true,
-    "joy-claude@joy-plugins": true
+    "pr-review-toolkit@claude-plugins-official": true,
+    "agmsg@fujibee-agmsg": true,
+    "worktrunk@worktrunk": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "joy-plugins": {
       "source": {
         "source": "directory",
-        "path": "$DOTFILES_DIR/claude-marketplace"
+        "path": "/Users/joy/github/JoyM1K1/dotfiles/claude-marketplace"
+      }
+    },
+    "fujibee-agmsg": {
+      "source": {
+        "source": "github",
+        "repo": "fujibee/agmsg"
+      }
+    },
+    "worktrunk": {
+      "source": {
+        "source": "github",
+        "repo": "max-sixty/worktrunk"
       }
     }
   },
