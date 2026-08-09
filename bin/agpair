@@ -1,0 +1,257 @@
+#!/usr/bin/env bash
+# agpair — herdr の現在のタブに claude / codex の pane を追加し、agmsg monitor で相互接続する
+#
+# Usage:
+#   agpair [up] [-t TEAM] [-p PROJECT] [--keep-shell] [--ready-timeout SEC]
+#   agpair down   [-t TEAM] [-p PROJECT]
+#
+# up (default): 手動でやっていた以下を 1 コマンドにまとめる
+#   - pane を追加して claude / codex を起動
+#   - 両方を agmsg の team に join し、delivery mode を monitor にする
+#   - codex を最初から bridge 経由 (monitor) で起動する (再起動不要)
+#   - claude は monitor attach、codex は bridge の armed を待って接続を確認する
+#
+# down: up で作ったものを片付ける
+#   - 同じタブにある claude / codex の pane を閉じる
+#   - codex の bridge と app-server プロセスを止める
+#   - agmsg の team から claude / codex を外す (空になれば team ごと消える)
+#   - worktree 内の hook ファイル (.claude/settings.local.json, .codex/hooks.json) は触らない
+#   herdr のキーバインド ([[keys.command]] type="pane") から呼ぶ想定。その場合は
+#   HERDR_ACTIVE_TAB_ID / HERDR_ACTIVE_PANE_CWD (フォーカス中の pane) を対象にする。
+#
+# Options:
+#   -t TEAM          agmsg の team 名 (up: default はディレクトリ名 / down: default は登録から解決)
+#   -p PROJECT       プロジェクトのパス (default: カレントディレクトリ、down はフォーカス中の pane の cwd を優先)
+#   --keep-shell     up の終了時にこのシェルの pane を閉じない (default: 閉じて claude|codex の 2 pane にする)
+#   --ready-timeout  claude の monitor attach / codex の bridge armed を待つ秒数 (default: 180)
+#
+# 前提:
+#   - herdr の pane 内で実行する (HERDR_TAB_ID または HERDR_ACTIVE_TAB_ID が必要)
+#   - agmsg が ~/.agents/skills/agmsg にインストール済み
+#   - codex の PATH shim (~/.agents/bin/codex) がインストール済み
+#       ~/.agents/skills/agmsg/scripts/drivers/types/codex/codex-shim-install.sh install
+set -euo pipefail
+
+AGMSG_DIR="${AGMSG_DIR:-$HOME/.agents/skills/agmsg}"
+SCRIPTS="$AGMSG_DIR/scripts"
+RUN_DIR="$AGMSG_DIR/run"
+CODEX_SHIM_BIN="$HOME/.agents/bin"
+AGENT_TYPES="claude-code codex"
+
+die() { echo "agpair: $*" >&2; exit 1; }
+info() { echo "agpair: $*"; }
+usage() { sed -n '2,33p' "$0" | sed 's/^# \{0,1\}//'; }
+
+# herdr のキーバインドから起動された一時 pane はコマンド終了と同時に閉じるので、
+# エラー時は Enter を待って出力を読めるようにする
+POPUP=0
+[ -z "${HERDR_PANE_ID:-}" ] && [ -n "${HERDR_ACTIVE_PANE_ID:-}" ] && POPUP=1
+on_exit() {
+  local rc=$?
+  [ -n "${OUT_DIR:-}" ] && rm -rf "$OUT_DIR"
+  if [ "$rc" -ne 0 ] && [ "$POPUP" = 1 ] && [ -t 0 ]; then
+    printf 'agpair: exit=%s — Enter で閉じる ' "$rc"; read -r _
+  fi
+}
+trap on_exit EXIT
+
+# --- 引数 ---
+CMD="up"
+case "${1:-}" in up|down|_launch) CMD="$1"; shift ;; esac
+LAUNCH_ARGS=("$@")   # _launch のときだけ使う (関数定義の後で dispatch する)
+TEAM=""
+PROJECT=""
+KEEP_SHELL=0
+READY_TIMEOUT=180
+[ "$CMD" = _launch ] && set --   # _launch は独自の位置引数なのでオプション解析を通さない
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -t|--team) TEAM="${2:?-t needs a team name}"; shift 2 ;;
+    -p|--project) PROJECT="${2:?-p needs a path}"; shift 2 ;;
+    --keep-shell) KEEP_SHELL=1; shift ;;
+    --ready-timeout) READY_TIMEOUT="${2:?--ready-timeout needs seconds}"; shift 2 ;;
+    -h|--help) usage; exit 0 ;;
+    *) die "unknown option: $1 (see --help)" ;;
+  esac
+done
+
+# --- 共通の前提チェック ---
+TAB="${HERDR_TAB_ID:-${HERDR_ACTIVE_TAB_ID:-}}"
+[ "$CMD" = _launch ] || [ -n "$TAB" ] || die "herdr の pane 内で実行してください (HERDR_TAB_ID / HERDR_ACTIVE_TAB_ID が未設定)"
+command -v herdr >/dev/null 2>&1 || die "herdr が見つかりません"
+command -v python3 >/dev/null 2>&1 || die "python3 が見つかりません"
+[ -x "$SCRIPTS/spawn.sh" ] || die "agmsg が見つかりません: $SCRIPTS"
+if [ "$CMD" = _launch ]; then
+  PROJECT="${LAUNCH_ARGS[0]:-}"
+elif [ -z "$PROJECT" ]; then
+  if [ "$CMD" = down ] && [ -n "${HERDR_ACTIVE_PANE_CWD:-}" ]; then
+    PROJECT="$HERDR_ACTIVE_PANE_CWD"
+  else
+    PROJECT="$PWD"
+  fi
+fi
+[ -d "$PROJECT" ] || die "project が存在しません: $PROJECT"
+PROJECT="$(cd "$PROJECT" && pwd)"
+
+# このプロジェクトに登録されている "team<TAB>agent" 行を全 type 分まとめて出す
+project_identities() {
+  local t
+  for t in $AGENT_TYPES; do
+    "$SCRIPTS/identities.sh" "$PROJECT" "$t" 2>/dev/null || true
+  done | awk -F'\t' 'NF >= 2' | sort -u
+}
+
+# このタブで PROJECT を cwd に持つ claude / codex の pane を列挙する (自分の pane は除外)
+agent_panes_in_tab() {
+  herdr pane list --workspace "${TAB%%:*}" 2>/dev/null | python3 -c '
+import json, sys
+tab, project, self_pane = sys.argv[1:4]
+panes = json.load(sys.stdin)["result"].get("panes", [])
+for p in panes:
+    if p.get("tab_id") != tab or p.get("pane_id") == self_pane:
+        continue
+    if p.get("cwd") != project:
+        continue
+    if (p.get("label") in ("claude", "codex")) or (p.get("agent") in ("claude", "codex")):
+        print(p["pane_id"], p.get("label") or p.get("agent"))
+' "$TAB" "$PROJECT" "${HERDR_PANE_ID:-}"
+}
+
+kill_pidfile() {  # kill_pidfile <label> <pidfile>
+  local pid
+  pid="$(cat "$2" 2>/dev/null || true)"
+  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+    kill "$pid" 2>/dev/null && info "$1 を停止しました (pid $pid)"
+  fi
+}
+
+pane_id_from_json() {  # herdr の JSON 出力から pane_id を取り出す
+  sed -n 's/.*"pane_id":"\([^"]*\)".*/\1/p' | head -1
+}
+
+# spawn.sh の --terminal テンプレートから呼ばれる内部コマンド。
+# `herdr agent start` は agent 名がセッション全体で一意でないと失敗する (複数 worktree で
+# claude を並行させると必ず衝突する) ので、名前なしの pane split + pane run で起動する。
+# pane の zsh 初期化後にコマンドが評価されるので、PREFIX で PATH 差し替えなどを前置できる。
+#   agpair _launch <source_pane> <focus|no-focus> <prefix> <outfile> <boot_script>
+cmd_launch() {
+  local source_pane="$1" focus="$2" prefix="$3" out="$4" boot="$5" json pane
+  json="$(herdr pane split --pane "$source_pane" --direction right --cwd "$PROJECT" "--$focus")"
+  pane="$(printf '%s' "$json" | pane_id_from_json)"
+  [ -n "$pane" ] || die "pane split に失敗しました: $json"
+  herdr pane run "$pane" "${prefix}exec $(printf '%q' "$boot")" >/dev/null
+  printf '%s\n' "$pane" > "$out"
+}
+
+# ============================================================
+cmd_up() {
+  [ -n "${HERDR_PANE_ID:-}" ] || die "up はシェルの pane から実行してください (HERDR_PANE_ID が未設定)"
+  command -v claude >/dev/null 2>&1 || die "claude が見つかりません"
+  command -v codex >/dev/null 2>&1 || die "codex が見つかりません"
+  [ -x "$CODEX_SHIM_BIN/codex" ] \
+    || die "codex の PATH shim がありません。次を実行してください: $SCRIPTS/drivers/types/codex/codex-shim-install.sh install"
+  [ -n "$TEAM" ] || TEAM="$(basename "$PROJECT")"
+  info "team=$TEAM project=$PROJECT tab=$TAB"
+
+  # delivery mode を monitor に (spawn より前に設定しておくと codex の初回起動から bridge 経由になる)
+  # join は spawn.sh が --team 付きで行うので、ここでは hook ファイルの生成だけ済ませる
+  "$SCRIPTS/delivery.sh" set monitor claude-code "$PROJECT" >/dev/null
+  "$SCRIPTS/delivery.sh" set monitor codex "$PROJECT" >/dev/null
+
+  OUT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/agpair.XXXXXX")"
+
+  # claude: 現在の pane の右に追加。monitor の watcher が attach するまで spawn.sh が待つ
+  local self; self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+  local claude_out="$OUT_DIR/claude.pane" claude_tmpl claude_pane
+  claude_tmpl="$(printf '%q ' "$self" _launch "$PROJECT" "$HERDR_PANE_ID" focus "" "$claude_out"){cmd}"
+  info "claude を起動中 (monitor attach を最大 ${READY_TIMEOUT}s 待ちます。信頼確認ダイアログが出たら「Yes」を選んでください)"
+  "$SCRIPTS/spawn.sh" claude-code claude \
+    --project "$PROJECT" --team "$TEAM" \
+    --terminal "$claude_tmpl" --ready-timeout "$READY_TIMEOUT"
+  claude_pane="$(cat "$claude_out" 2>/dev/null || true)"
+
+  # codex: claude の右に追加。PATH 先頭に shim を置き、boot script 内の `codex` を monitor 経由にする
+  # (zsh の .zprofile が PATH を組み直すので、--env ではなく実行コマンドの前置で差し替える)
+  local codex_out="$OUT_DIR/codex.pane" codex_tmpl codex_pane
+  codex_tmpl="$(printf '%q ' "$self" _launch "$PROJECT" "${claude_pane:-$HERDR_PANE_ID}" no-focus "PATH=$CODEX_SHIM_BIN:\$PATH " "$codex_out"){cmd}"
+  info "codex を起動中 (bridge 経由)"
+  "$SCRIPTS/spawn.sh" codex codex \
+    --project "$PROJECT" --team "$TEAM" \
+    --terminal "$codex_tmpl"
+  codex_pane="$(cat "$codex_out" 2>/dev/null || true)"
+
+  # codex には readiness handshake がないので、bridge が armed になるのを自分で待つ
+  # (初回プロンプト `$agmsg actas codex` の turn で SessionStart hook が走り bridge が起動する)
+  local bridge_pid="$RUN_DIR/codex-bridge.$TEAM.codex.pid"
+  local bridge_log="$RUN_DIR/codex-bridge.$TEAM.codex.log"
+  info "codex の bridge armed を最大 ${READY_TIMEOUT}s 待ちます"
+  local waited=0
+  until [ -f "$bridge_pid" ] && kill -0 "$(cat "$bridge_pid" 2>/dev/null)" 2>/dev/null \
+    && grep -q "armed $TEAM/codex" "$bridge_log" 2>/dev/null; do
+    if [ "$waited" -ge "$READY_TIMEOUT" ]; then
+      echo "agpair: codex の bridge が ${READY_TIMEOUT}s 以内に armed になりませんでした (log: $bridge_log)" >&2
+      exit 3
+    fi
+    sleep 1; waited=$((waited + 1))
+  done
+  info "status=ready name=codex team=$TEAM after=${waited}s"
+
+  info "claude=$claude_pane codex=$codex_pane"
+  [ -n "$claude_pane" ] && herdr agent focus "$claude_pane" >/dev/null 2>&1 || true
+  herdr notification show "agpair: $TEAM" --body "claude / codex を monitor で接続しました" --sound done >/dev/null 2>&1 || true
+
+  if [ "$KEEP_SHELL" = 0 ] && [ -n "${HERDR_PANE_ID:-}" ]; then
+    herdr pane close "$HERDR_PANE_ID" >/dev/null 2>&1 || true
+  fi
+}
+
+# ============================================================
+cmd_down() {
+  local idents teams
+  idents="$(project_identities)"
+  if [ -z "$TEAM" ]; then
+    teams="$(printf '%s\n' "$idents" | awk -F'\t' 'NF >= 2 { print $1 }' | sort -u)"
+    case "$(printf '%s\n' "$teams" | grep -c .)" in
+      0) die "このプロジェクトに登録された team がありません: $PROJECT" ;;
+      1) TEAM="$teams" ;;
+      *) die "複数の team に登録されています。-t で指定してください: $(printf '%s' "$teams" | paste -sd, -)" ;;
+    esac
+  fi
+  info "team=$TEAM project=$PROJECT tab=$TAB"
+
+  # 1. このタブの claude / codex pane を閉じる (セッションも終了する)
+  local pane label closed=0
+  while read -r pane label; do
+    [ -n "$pane" ] || continue
+    herdr pane close "$pane" >/dev/null 2>&1 && info "pane を閉じました: $pane ($label)" && closed=$((closed + 1))
+  done <<EOF
+$(agent_panes_in_tab)
+EOF
+  [ "$closed" -gt 0 ] || info "閉じる pane はありませんでした (tab=$TAB, cwd=$PROJECT)"
+
+  # 2. codex の bridge と app-server を止める
+  local project_hash
+  project_hash="$(printf '%s' "$PROJECT" | shasum | awk '{print $1}')"
+  kill_pidfile "codex bridge" "$RUN_DIR/codex-bridge.$TEAM.codex.pid"
+  kill_pidfile "codex app-server" "$RUN_DIR/codex-app-server.$project_hash.pid"
+
+  # 3. team から外す (空になれば team ごと消える)
+  local t agent left=0
+  while IFS=$'\t' read -r t agent; do
+    [ "$t" = "$TEAM" ] && [ -n "$agent" ] || continue
+    "$SCRIPTS/leave.sh" "$TEAM" "$agent" && left=$((left + 1))
+  done <<EOF
+$idents
+EOF
+  [ "$left" -gt 0 ] || info "team $TEAM にこのプロジェクトの登録はありませんでした"
+
+  herdr notification show "agpair down: $TEAM" --body "pane ${closed} 個を閉じ、team から ${left} 名を外しました" --sound done >/dev/null 2>&1 || true
+}
+
+case "$CMD" in
+  up) cmd_up ;;
+  down) cmd_down ;;
+  _launch)
+    [ "${#LAUNCH_ARGS[@]}" -eq 6 ] || die "_launch: bad args"
+    cmd_launch "${LAUNCH_ARGS[@]:1}" ;;
+esac
