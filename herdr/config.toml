@@ -1,3 +1,11 @@
 [ui]
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
+
+# agpair down: フォーカス中の pane の worktree について claude / codex の pane を閉じ、
+# codex bridge を止め、agmsg の team から外す (dotfiles/bin/agpair)
+# ~/.config/herdr は dotfiles/herdr への symlink なので、../bin で dotfiles/bin に届く
+[[keys.command]]
+key = "prefix+d"
+type = "pane"
+command = "$HOME/.config/herdr/../bin/agpair down"
