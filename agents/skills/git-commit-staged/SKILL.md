@@ -1,14 +1,17 @@
 ---
+name: git-commit-staged
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git commit:*)
 description: 現在stagedな変更のみcommitする
 ---
 
 ## Context
 
-- Current git status: !`git status`
-- Staged changes: !`git diff --cached`
-- Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+次のコマンドをシェルツールで実行して状況を確認する。
+
+- Current git status: `git status`
+- Staged changes: `git diff --cached`
+- Current branch: `git branch --show-current`
+- Recent commits: `git log --oneline -10`
 
 ## Your task
 

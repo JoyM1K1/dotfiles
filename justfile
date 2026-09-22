@@ -6,7 +6,7 @@ set dotenv-load := false
 dotfiles_dir := justfile_directory()
 
 # 全コンポーネントをインストール
-install: brew zsh git nvim ghostty zellij claude vscode vim karabiner
+install: brew zsh git nvim ghostty zellij agents claude codex vscode vim karabiner
 
 # Homebrew パッケージ
 brew:
@@ -33,8 +33,15 @@ zellij:
     zsh {{dotfiles_dir}}/zellij/install.zsh
 
 # Claude設定
-claude:
+claude: agents
     zsh {{dotfiles_dir}}/claude/install.zsh
+
+# 自作スキルを Claude / Codex で共有
+agents:
+    zsh "{{dotfiles_dir}}/agents/install.zsh"
+
+# Codex の自作スキル (設定・外部スキルは各ツールで管理)
+codex: agents
 
 # VS Code設定
 vscode:

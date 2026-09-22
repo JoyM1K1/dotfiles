@@ -1,4 +1,5 @@
 ---
+name: document-learnings
 description: 現在の会話から重要な学びをドキュメント化
 ---
 

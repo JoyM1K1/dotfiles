@@ -1,0 +1,15 @@
+!/install.zsh
+!/test_install.zsh
+# 外部スキル内の .gitignore による再許可も防ぐため、ディレクトリごと除外する。
+/skills/*
+!/skills/document-learnings/
+!/skills/document-learnings/**
+!/skills/git-commit-staged/
+!/skills/git-commit-staged/**
+!/skills/skill-builder/
+!/skills/skill-builder/**
+/skills/**/.git/
+/skills/**/__pycache__/
+/skills/**/node_modules/
+/skills/**/*.pyc
+/skills/**/*.local*

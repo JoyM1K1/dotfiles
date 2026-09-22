@@ -1,3 +1,4 @@
 !/**/*.md
+!/.claude-plugin/marketplace.json
 /**/*.local*
 !/joy-claude/skills/pre-compact/get-session-id.sh

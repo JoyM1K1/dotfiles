@@ -1,14 +1,17 @@
 ---
 name: skill-builder
-description: Claude Code用スキルをインタラクティブに作成・改善する。新規作成ではユースケース定義からバリデーションまでガイド。既存スキルのレビュー・改善にも対応。Use when user says "create a skill", "build a skill", "make a skill", "new skill", "スキルを作りたい", "新しいスキル", "スキル作成", "review a skill", "improve a skill", "スキルを改善", "スキルをレビュー".
+description: Claude Code / Codex 用スキルをインタラクティブに作成・改善する。新規作成ではユースケース定義からバリデーションまでガイド。既存スキルのレビュー・改善にも対応。Use when user says "create a skill", "build a skill", "make a skill", "new skill", "スキルを作りたい", "新しいスキル", "スキル作成", "review a skill", "improve a skill", "スキルを改善", "スキルをレビュー".
 ---
 
 # Skill Builder
 
-Claude Code用スキルをベストプラクティスに従って作成・改善するワークフロー。
+Claude Code / Codex 用スキルをベストプラクティスに従って作成・改善するワークフロー。
 各ステップでユーザーに確認を取りながら進める。
 
-詳細なルールやチェックリストは `${CLAUDE_SKILL_DIR}/references/guide-summary.md` を参照すること。
+相対パスはこの SKILL.md のあるディレクトリを基準に解決する。
+Claude Code 固有の記法は Codex で自動展開されないため、共有スキルでは通常のシェル実行指示と相対リンクを使う。
+
+詳細なルールやチェックリストは [references/guide-summary.md](references/guide-summary.md) を参照すること。この資料は Claude 向けであり、Claude 固有の制約を Codex に適用しない。Codex 用では name と description を必須とし、ツール名や配置先は対象環境に合わせる。
 
 ## Instructions
 
@@ -49,7 +52,7 @@ Result: [期待される成果]
 
 1. **対象スキルの特定**: ユーザーにレビュー対象のスキル名またはパスを確認する
 2. **SKILL.mdの読み込み**: 対象スキルのSKILL.mdを読み込む
-3. **`${CLAUDE_SKILL_DIR}/references/guide-summary.md` のチェックリストに基づきレビュー**:
+3. **`references/guide-summary.md` のチェックリストに基づきレビュー**:
 
    **Frontmatterレビュー:**
    - nameがkebab-caseでフォルダ名と一致しているか
@@ -63,7 +66,7 @@ Result: [期待される成果]
    - 重要な指示がファイル先頭に配置されているか
    - エラーハンドリングが含まれているか
    - 例が提供されているか
-   - referencesへの参照に `${CLAUDE_SKILL_DIR}/` が使われているか
+   - referencesへの参照が SKILL.md 基準の相対リンクになっているか
 
    **構造レビュー:**
    - SKILL.mdが5,000語以下か
@@ -128,14 +131,15 @@ YAML frontmatterを以下のルールで生成する：
    - 詳細なドキュメントは `references/` に分離
 
 5. **動的コンテキストが必要な場合**
-   - `!` バッククォート構文でコマンド出力を埋め込む
-   - 例: `!git status`
+   - 必要なコマンドをシェルツールで実行するよう本文に書く
+   - 例: 「`git status` を実行して変更状況を確認する」
+   - Claude Code 専用スキルに限り、動的コンテキストの埋め込み記法を使用してよい
 
 生成した本文をユーザーに提示して確認を取る。
 
 ### Step 5: バリデーションチェック
 
-`${CLAUDE_SKILL_DIR}/references/guide-summary.md` のクイックチェックリストに基づいて検証する。
+`references/guide-summary.md` のクイックチェックリストに基づいて検証する。
 
 **構造チェック:**
 - [ ] ファイル名が正確に `SKILL.md`（大文字小文字区別）

@@ -80,8 +80,8 @@
   },
   "enabledPlugins": {
     "joy-claude@joy-plugins": true,
-    "joy-docs@joy-plugins": true,
-    "joy-git@joy-plugins": true,
+    "joy-docs@joy-plugins": false,
+    "joy-git@joy-plugins": false,
     "pr-review-toolkit@claude-plugins-official": true,
     "agmsg@fujibee-agmsg": true,
     "worktrunk@worktrunk": true,
